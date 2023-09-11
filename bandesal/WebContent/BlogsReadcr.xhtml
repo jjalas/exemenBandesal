@@ -71,7 +71,7 @@
                 </p:selectOneMenu>
            </h:panelGrid> 
             <p:separator />  
-           <p:commandButton id="btnsv" value="Guardar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgadd').hide()}" actionListener="#{mBBlogs.guardar}"  update=":frmMain:provdt"></p:commandButton>  
+           <p:commandButton id="btnsv" value="Guardar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgadd').hide()}" actionListener="#{mBBlRe.guardar}"  update=":frmMain:provdt"></p:commandButton>  
            <p:spacer width="20" height="20" />
            <p:commandButton value="Cerrar" id="btnCa" onclick="PF('dlgadd').hide()" process="@this"/>   
            <p:spacer width="20" height="20" />
@@ -84,12 +84,16 @@
    <p:outputPanel id="opedit" style="text-align:left;" >
           <h:form id="frmEdit">  
           <h:panelGrid columns="2" cellpadding="10" >
-               <h:outputLabel>Titulo :</h:outputLabel>
-            <p:inputText  id="bname" value="#{mBBlogs.blogsel.title}"  label="Blogs" required="true" size="50"/>
-           
-             <h:outputLabel>Descripcion :</h:outputLabel>
-             <p:inputTextarea cols="25" rows="5" maxlength="4000" value="#{mBBlogs.blogsel.description}"></p:inputTextarea>
-        
+             <h:outputLabel>Blog :</h:outputLabel>
+             <p:selectOneMenu id="blog" value="#{mBBlRe.blog}" filter="true" filterMatchMode="startsWith" filterNormalize="true">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItems value="#{mBBlRe.blomap}"/>
+                </p:selectOneMenu>
+             <h:outputLabel>Readers :</h:outputLabel>
+             <p:selectOneMenu id="blog" value="#{mBBlRe.reader}" filter="true" filterMatchMode="startsWith" filterNormalize="true">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItems value="#{mBBlRe.readmap}"/>
+                </p:selectOneMenu>
            
            </h:panelGrid> 
            
@@ -99,7 +103,7 @@
            
            
              <p:separator />  
-           <p:commandButton id="btned" value="Actualizar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgedit').hide()}" actionListener="#{mBBlogs.actualizar}"  update=":frmMain:provdt"></p:commandButton>  
+           <p:commandButton id="btned" value="Actualizar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgedit').hide()}" actionListener="#{mBBlRe.actualizar}"  update=":frmMain:provdt"></p:commandButton>  
            <p:spacer width="20" height="20" />
            <p:commandButton value="Cerrar" id="btnce" onclick="PF('dlgedit').hide()" process="@this"/>   
            <p:spacer width="20" height="20" />
