@@ -9,37 +9,35 @@
 
 <p:panel id="panelmain">
 <p:outputPanel id="opcontent">
- <p:dataTable id="blogdt" var="fila" value="#{mBBlogs.blogl}" paginator="true"
+ <p:dataTable id="blogdt" var="fila" value="#{mBRead.readl}" paginator="true"
     rows="15" rowsPerPageTemplate="10,15,25" paginatorPosition="bottom"  >  
     <f:facet name="header">  
-            Blogs
+           Readers
       </f:facet>  
 
-      <p:column headerText="Blog ID" style="width:4%" >  
+      <p:column headerText="Reader ID" style="width:4%" >  
             <h:outputText value="#{fila.id}" />  
         </p:column>
         
-          <p:column headerText="Titulo" style="width:15%" >  
-            <h:outputText value="#{fila.title}" />  
+          <p:column headerText="Nombre" style="width:15%" >  
+            <h:outputText value="#{fila.name}" />  
         </p:column>
         
-            <p:column headerText="Descripcion" style="width:24%" >  
-            <h:outputText value="#{fila.description}" />  
-        </p:column>
+      
           <p:column style="width:4%" headerText="Editar">  
                <p:commandButton id="selbtn"  icon="fa fa-edit" title="Editar"  oncomplete="PF('dlgedit').show()" process="@this" update=":dlgedit" >  
-                <f:setPropertyActionListener value="#{fila}"  target="#{mBBlogs.blogsel}"/>  
+                <f:setPropertyActionListener value="#{fila}"  target="#{mBRead.readersel}"/>  
             </p:commandButton>  
         </p:column>
-        
+       
            <p:column style="width:4%" headerText="Eliminar">  
-               <p:commandButton id="delbtn"  icon="fa fa-trash" title="ELiminar"  action="#{mBBlogs.eliminar}" process="@this" >  
-                <f:setPropertyActionListener value="#{fila}"  target="#{mBBlogs.blogsel}"/>  
-                 <p:confirm header="Confirmar" message="Desea Continuar?" icon="pi pi-exclamation-triangle"/>
+               <p:commandButton id="delbtn"  icon="fa fa-trash" title="Eliminar"  action="#{mBRead.eliminar}" process="@this" >  
+                <f:setPropertyActionListener value="#{fila}"  target="#{mBRead.readersel}"/>  
+                 <p:confirm header="Confimar" message="Desea Continuar?" icon="pi pi-exclamation-triangle"/>
             </p:commandButton>  
         </p:column>
           <f:facet name="footer">
-            <p:commandButton   icon="fa fa-user-plus" value="Nuevo" actionListener="#{mBBlogs.onCreate()}" oncomplete="PF('dlgadd').show()" process="@this" update=":dlgadd"/>
+            <p:commandButton   icon="fa fa-user-plus" value="Nuevo" actionListener="#{mBRead.onCreate()}" oncomplete="PF('dlgadd').show()" process="@this" update=":dlgadd"/>
             <p:spacer width="10"></p:spacer>
               <p:commandButton id="btncs" icon="fa fa-home" value="Salir" actionListener="#{mBLogin.doSalir}"/>
         </f:facet>
@@ -52,20 +50,18 @@
 
 </p:panel>
 
- <p:dialog header="Agregar Blogs" widgetVar="dlgadd" id="dlgadd" modal="true" resizable="false" height="450" focus="frmAdd:bname" appendTo="@(body)">
+ <p:dialog header="Agregar Readers" widgetVar="dlgadd" id="dlgadd" modal="true" resizable="false" height="450" focus="frmAdd:bname" appendTo="@(body)">
    <p:outputPanel id="opadd" style="text-align:left;" >
           <h:form id="frmAdd">  
           <h:panelGrid columns="2" cellpadding="10" >
                       
-              <h:outputLabel>Titulo :</h:outputLabel>
-             <p:inputText  id="bname" value="#{mBBlogs.blogsel.title}"  label="Blogs" required="true" size="50"/>
+              <h:outputLabel>Nombre :</h:outputLabel>
+             <p:inputText  id="bname" value="#{mBRead.readersel.name}"  label="Nombre" required="true" size="50"/>
            
-             <h:outputLabel>Descripcion :</h:outputLabel>
-             <p:inputTextarea cols="25" rows="5" maxlength="4000" value="#{mBBlogs.blogsel.description}"></p:inputTextarea>
-        
+          
            </h:panelGrid> 
             <p:separator />  
-           <p:commandButton id="btnsv" value="Guardar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgadd').hide()}" actionListener="#{mBBlogs.guardar}"  update=":frmMain:provdt"></p:commandButton>  
+           <p:commandButton id="btnsv" value="Guardar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgadd').hide()}" actionListener="#{mBRead.guardar}"  update=":frmMain:provdt"></p:commandButton>  
            <p:spacer width="20" height="20" />
            <p:commandButton value="Cerrar" id="btnCa" onclick="PF('dlgadd').hide()" process="@this"/>   
            <p:spacer width="20" height="20" />
@@ -78,12 +74,8 @@
    <p:outputPanel id="opedit" style="text-align:left;" >
           <h:form id="frmEdit">  
           <h:panelGrid columns="2" cellpadding="10" >
-               <h:outputLabel>Titulo :</h:outputLabel>
-            <p:inputText  id="bname" value="#{mBBlogs.blogsel.title}"  label="Blogs" required="true" size="50"/>
-           
-             <h:outputLabel>Descripcion :</h:outputLabel>
-             <p:inputTextarea cols="25" rows="5" maxlength="4000" value="#{mBBlogs.blogsel.description}"></p:inputTextarea>
-        
+           <h:outputLabel>Nombre :</h:outputLabel>
+             <p:inputText  id="bname" value="#{mBRead.readersel.name}"  label="Nombre" required="true" size="50"/>
            
            </h:panelGrid> 
            
@@ -93,7 +85,7 @@
            
            
              <p:separator />  
-           <p:commandButton id="btned" value="Actualizar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgedit').hide()}" actionListener="#{mBBlogs.actualizar}"  update=":frmMain:provdt"></p:commandButton>  
+           <p:commandButton id="btned" value="Actualizar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgedit').hide()}" actionListener="#{mBRead.actualizar}"  update=":frmMain:provdt"></p:commandButton>  
            <p:spacer width="20" height="20" />
            <p:commandButton value="Cerrar" id="btnce" onclick="PF('dlgedit').hide()" process="@this"/>   
            <p:spacer width="20" height="20" />

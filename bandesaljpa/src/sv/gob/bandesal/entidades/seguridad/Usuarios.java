@@ -42,6 +42,8 @@ public class Usuarios implements Serializable {
     private String login;
     @Column(name = "clave")
     private String clave;
+    @Column(name = "nombre")
+    private String nombre;
     @Column(name = "apellido")
     private String apellido;
 
@@ -76,7 +78,15 @@ public class Usuarios implements Serializable {
         this.clave = clave;
     }
 
-    public String getApellido() {
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
         return apellido;
     }
 

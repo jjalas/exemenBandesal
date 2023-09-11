@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head></h:head>
+	
+<ui:composition template="/PlantillaLogin.xhtml">
+
+   <ui:define name="content" >
+  
+       
+	<h:form id="frmMain" prependId="false">	
+	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />	
+	<div align="center">
+<p:panel id="panel" header="Autenticacion"  >
+      <p:focus context="panel"/>	
+	<h:panelGrid columns="4" cellpadding="5" >
+           <p:separator></p:separator><p:separator></p:separator><p:separator></p:separator><h:outputLabel  value="" />
+            
+            <h:outputLabel for="userName" value="Usuario *:" />
+            <p:inputText id="userName" value="#{mBLogin.usuario}" required="true" label="username" requiredMessage="Debe de Ingresar su usuario" />
+            <p:watermark for="userName" value="Digite su usuario" id="wm" />
+            <p:graphicImage value="/images/user.png" />
+            <h:outputLabel for="password" value="Clave:" />
+            <p:password id="password" value="#{mBLogin.clave}" required="true" label="password" requiredMessage="Debe de Ingresar su clave"/>
+            <p:watermark for="password" value="Digite su clave" id="wmc" />
+            <p:graphicImage value="/images/pass.png" />
+           <p:separator></p:separator>
+           <p:separator></p:separator><h:outputLabel  value="" />
+            <f:facet name="footer">
+                <p:commandButton value="Login" action="#{mBLogin.doLogin()}" />
+                
+            </f:facet> 
+        </h:panelGrid>
+   </p:panel>     
+   </div>
+  </h:form>
+ </ui:define>
+</ui:composition>
+
+</html>

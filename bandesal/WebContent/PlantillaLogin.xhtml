@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+   
+   <link rel="SHORTCUT ICON" href="imagenes/favicon.ico"/>
+  
+ <script type="text/javascript">
+
+PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','Mi','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+</script>
+<style type="text/css">
+
+
+.ui-widget {
+font-size: 95% !important;
+
+}
+
+
+.ui-widget-header1{
+background: url("images/snacklogo.jpg"); 
+background-repeat: no-repeat; 
+background-color: black;
+background-size:100%;
+background-position: center; 
+}
+.ui-menu .ui-menu-item .ui-menu-item-label {
+padding: .2em 1.7em;
+}
+
+.ui-growl {
+top:115px;
+}
+
+.themeMenu {
+overflow: auto;
+height:300px;
+width:200px;
+
+.red{
+   background-color:blue;
+   background-image:none;
+}
+
+
+}
+</style>
+	
+ 
+	
+	</h:head>
+
+<h:body  onload="nobackbutton();">
+
+<div class="ui-widget ui-widget-header1"   style="position: relative; height: 175px;width: 100%; visibility: visible;">
+ 
+ <p:separator></p:separator>
+  <div align="right">
+    
+  </div>
+</div>
+
+<p:layout style="min-width:100%;min-height:800px; height: 800px !important;width:100%;">
+<h:form id="frmMesages">
+ 
+  
+ </h:form>
+ <div id="wrapper">
+  <div id="page">
+    
+  
+   <p:layoutUnit position="center" id="lucon" size="200">
+   
+    
+     <div id="content" class="ui-widget">
+       <div class="post" id="postc">
+        <p:outputPanel id="contenido">
+            <ui:insert name="content">
+               
+               
+            </ui:insert>
+        </p:outputPanel>
+       </div>
+     </div>
+   </p:layoutUnit>
+
+    <div style="clear: both;" id="divboth"> </div>
+ </div>
+</div>
+ 
+</p:layout>
+
+
+</h:body>
+
+<p:notificationBar  position="top" effect="slide" styleClass="top" widgetVar="bar">
+    <h:outputText value="Su sesion ha expirado" style="font-size:36px;" />
+</p:notificationBar>
+
+
+
+</html>

@@ -5,6 +5,7 @@
 	<class>sv.gob.bandesal.entidades.negocio.BlogsReaders</class>
 	<class>sv.gob.bandesal.entidades.negocio.Readers</class>
 	<class>sv.gob.bandesal.entidades.seguridad.Usuarios</class>
+	<class>sv.gob.bandesal.entidades.seguridad.Menu</class>
 	
 	
 	 <properties>

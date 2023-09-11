@@ -30,12 +30,34 @@ public class MBblogs implements Serializable {
 	  blogl = blogsvr.findAll();	
 	}
 	
+	public void onCreate(){
+		blogsel = new Blogs();
+	}
 	
+	public void guardar(){
+	try{	
+		blogsvr.guardar(blogsel);
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+			
+	}
 	
+	public void actualizar(){
+		try{	
+			blogsvr.actualizar(blogsel);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}	
+	}
 	
-	
-	
-	
+	public void eliminar(){
+		try{	
+			blogsvr.eliminar(blogsel);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
 	
 	
 	public List<Blogs> getBlogl() {

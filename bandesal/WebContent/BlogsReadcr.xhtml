@@ -9,10 +9,10 @@
 
 <p:panel id="panelmain">
 <p:outputPanel id="opcontent">
- <p:dataTable id="blogdt" var="fila" value="#{mBBlogs.blogl}" paginator="true"
+ <p:dataTable id="blogdt" var="fila" value="#{mBBlRe.blrel}" paginator="true"
     rows="15" rowsPerPageTemplate="10,15,25" paginatorPosition="bottom"  >  
     <f:facet name="header">  
-            Blogs
+            Blogs Readers
       </f:facet>  
 
       <p:column headerText="Blog ID" style="width:4%" >  
@@ -26,6 +26,8 @@
             <p:column headerText="Descripcion" style="width:24%" >  
             <h:outputText value="#{fila.description}" />  
         </p:column>
+       
+       
           <p:column style="width:4%" headerText="Editar">  
                <p:commandButton id="selbtn"  icon="fa fa-edit" title="Editar"  oncomplete="PF('dlgedit').show()" process="@this" update=":dlgedit" >  
                 <f:setPropertyActionListener value="#{fila}"  target="#{mBBlogs.blogsel}"/>  
@@ -57,12 +59,16 @@
           <h:form id="frmAdd">  
           <h:panelGrid columns="2" cellpadding="10" >
                       
-              <h:outputLabel>Titulo :</h:outputLabel>
-             <p:inputText  id="bname" value="#{mBBlogs.blogsel.title}"  label="Blogs" required="true" size="50"/>
-           
-             <h:outputLabel>Descripcion :</h:outputLabel>
-             <p:inputTextarea cols="25" rows="5" maxlength="4000" value="#{mBBlogs.blogsel.description}"></p:inputTextarea>
-        
+              <h:outputLabel>Blog :</h:outputLabel>
+             <p:selectOneMenu id="blog" value="#{mBBlRe.blog}" filter="true" filterMatchMode="startsWith" filterNormalize="true">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItems value="#{mBBlRe.blomap}"/>
+                </p:selectOneMenu>
+             <h:outputLabel>Readers :</h:outputLabel>
+             <p:selectOneMenu id="blog" value="#{mBBlRe.reader}" filter="true" filterMatchMode="startsWith" filterNormalize="true">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItems value="#{mBBlRe.readmap}"/>
+                </p:selectOneMenu>
            </h:panelGrid> 
             <p:separator />  
            <p:commandButton id="btnsv" value="Guardar" icon="ui-icon-disk" oncomplete="if (!args.validationFailed){PF('dlgadd').hide()}" actionListener="#{mBBlogs.guardar}"  update=":frmMain:provdt"></p:commandButton>  
