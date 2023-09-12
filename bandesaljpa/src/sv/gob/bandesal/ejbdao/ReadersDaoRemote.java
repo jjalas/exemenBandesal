@@ -2,11 +2,11 @@ package sv.gob.bandesal.ejbdao;
 
 import java.util.List;
 
-import javax.ejb.EJBObject;
+import javax.ejb.Remote;
 
 import sv.gob.bandesal.entidades.negocio.Readers;
-
-public interface ReadersDaoRemote extends EJBObject {
+@Remote
+public interface ReadersDaoRemote  {
        List<Readers> findAll();
        void guardar(Readers ob);
        void actualizar(Readers ob);

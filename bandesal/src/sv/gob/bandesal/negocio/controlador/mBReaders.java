@@ -11,16 +11,20 @@ import sv.gob.bandesal.service.ReadersSvrImp;
 
 @ManagedBean(name="mBRead")
 @ViewScoped
-public class mBReaders {
+public class MBReaders {
   private List<Readers> readl;
   private Readers readersel;
 
   ReadersSvrImp rdsvr = new ReadersSvrImp();
   @PostConstruct
   public void init(){
-	  readl = rdsvr.findAll();
+	  System.out.println("init mb ");
+	  listar();
   }
   
+  public void listar(){
+	  readl = rdsvr.findAll();  
+  }
   public void onCreate(){
 	  readersel = new Readers();
   }
@@ -28,6 +32,7 @@ public class mBReaders {
   public void guardar(){
 	 try{
 	  rdsvr.guardar(readersel);
+	  listar();
 	 }catch(Exception ex){
 		 ex.printStackTrace();
 	 }
@@ -35,6 +40,7 @@ public class mBReaders {
   public void actualizar(){
 	 try{
 	  rdsvr.actualizar(readersel);
+	  listar();
 	 }catch(Exception ex){
 		 ex.printStackTrace();
 	 }
@@ -43,6 +49,7 @@ public class mBReaders {
   public void eliminar(){
 	try{
 	  rdsvr.eliminar(readersel);
+	  listar();
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}

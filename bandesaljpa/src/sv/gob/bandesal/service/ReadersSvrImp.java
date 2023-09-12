@@ -9,10 +9,10 @@ import sv.gob.bandesal.entidades.negocio.Readers;
 
 public class ReadersSvrImp implements IReadersSvr {
 	@EJB
-	ReadersDaoImp readdao;
+	ReadersDaoImp readdao = new ReadersDaoImp();
 	@Override
 	public List<Readers> findAll() {
-	
+	  
 		return readdao.findAll();
 	}
 
@@ -31,6 +31,12 @@ public class ReadersSvrImp implements IReadersSvr {
 	public void eliminar(Readers ob) {
 		readdao.Eliminar(ob);
 
+	}
+
+	@Override
+	public Readers findById(int id) {
+		
+		return readdao.findById(id);
 	}
 
 }

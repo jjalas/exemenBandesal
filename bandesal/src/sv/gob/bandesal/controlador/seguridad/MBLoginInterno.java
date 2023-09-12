@@ -89,7 +89,7 @@ public void doLogin(){
    
     
     Usuarios log = lesvr.getUsuarioByUser(usuario);
-      
+   
       if (log != null){
         clavetabla = log.getClave().trim();
         codusuario = log.getLogin();

@@ -100,14 +100,15 @@ private MenuModel menumodel;
       DefaultSubMenu sb = new DefaultSubMenu();
       sb.setId("sm"+z);
       sb.setLabel(((Menu)this.menul.get(z)).getNombre());
-      submenul = daom.getSubmenu(((Menu)this.menul.get(z)).getIdmenu(), idrol);
-      if (this.submenul != null) {
-        for (int i = 0; i < this.submenul.size(); i++)
-        {
+      //submenul = daom.getSubmenu(((Menu)this.menul.get(z)).getIdmenu(), idrol);
+      //if (this.submenul != null) {
+       // for (int i = 0; i < this.submenul.size(); i++)
+       // {
           DefaultMenuItem mi = new DefaultMenuItem();
           mi.setId("mit"+mit);
-          mi.setValue(((Menu)this.submenul.get(i)).getNombre());
-          url = ((Menu)this.submenul.get(i)).getObjeto();
+         // mi.setValue(((Menu)this.submenul.get(i)).getNombre());
+          mi.setValue(((Menu)this.menul.get(z)).getNombre());
+          url = menul.get(z).getObjeto();
           mi.setCommand("#{mBNaveg.doPagina}");
           mi.setParam("pagina",url);
  //         mi.setActionExpression(expFact.createMethodExpression(elCtx, "#{mBNavegacion.setPaginaActual('" + url + "')}", Void.class, new Class[0]));
@@ -115,8 +116,7 @@ private MenuModel menumodel;
   //        mi.setUpdate("@none");
           sb.addElement(mi);
           mit++;
-        }
-      }
+ 
       this.menumodel.addElement(sb);
     }
   }

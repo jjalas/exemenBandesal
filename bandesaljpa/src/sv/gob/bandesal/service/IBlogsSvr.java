@@ -9,5 +9,8 @@ public interface IBlogsSvr {
    void guardar(Blogs ob);
    void actualizar(Blogs ob);
    void eliminar(Blogs ob);
+   Blogs findById(int id);
+	   
+  
    
 }

@@ -11,7 +11,7 @@ import sv.gob.bandesal.entidades.negocio.Blogs;
 
 public class BlogsSvrImp implements IBlogsSvr {
     @EJB
-	BlogDaoImp blda;
+	BlogDaoImp blda = new BlogDaoImp();
     
 	@Override
 	public List<Blogs> findAll() {
@@ -35,6 +35,12 @@ public class BlogsSvrImp implements IBlogsSvr {
 	public void eliminar(Blogs ob) {
 		blda.Eliminar(ob);
 
+	}
+
+	@Override
+	public Blogs findById(int id) {
+		
+		return blda.findById(id);
 	}
 
 }

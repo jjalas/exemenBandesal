@@ -1,89 +1,104 @@
 package sv.gob.bandesal.ejbdao;
 
 
-import java.rmi.RemoteException;
 import java.util.List;
 
-import javax.ejb.CreateException;
-import javax.ejb.EJBMetaData;
-import javax.ejb.Handle;
-import javax.ejb.HomeHandle;
-import javax.ejb.RemoveException;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import sv.gob.bandesal.entidades.negocio.Blogs;
 import sv.gob.bandesal.entidades.negocio.Readers;
-import sv.gob.bandesal.persistencia.DaoGenerico;
+import sv.gob.bandesal.util.PersistenceListener;
 
 @Stateless
-public class ReadersDaoImp implements ReadersDao,DaoGenerico<Readers, Long> {
+public class ReadersDaoImp implements ReadersDao {
 
-	@Override
-	public EJBMetaData getEJBMetaData() throws RemoteException {
-		
-		return null;
-	}
-
-	@Override
-	public HomeHandle getHomeHandle() throws RemoteException {
-		
-		return null;
-	}
-
-	@Override
-	public void remove(Handle arg0) throws RemoteException, RemoveException {
-		
-		
-	}
-
-	@Override
-	public void remove(Object arg0) throws RemoteException, RemoveException {
-	
-		
-	}
-
-	@Override
+	EntityManager session=null;
+	List<Readers> res=null; 
 	public void Guardar(Readers t) {
+		try{
+			 session=PersistenceListener.createEntityManager();
+			 session.getTransaction().begin();
+			 session.persist(t);
+			 session.getTransaction().commit();
+		}catch(Exception e){
+			session.getTransaction().rollback();
+			e.printStackTrace();;
+		 }finally{
+			 session.close();
+		 }	
 		
 		
 	}
 
-	@Override
 	public void Actualizar(Readers t) {
-		
+		try{
+			 session=PersistenceListener.createEntityManager();
+			 session.getTransaction().begin();
+			 session.merge(t);
+			 session.getTransaction().commit();
+		}catch(Exception e){
+			session.getTransaction().rollback();
+			e.printStackTrace();;
+		 }finally{
+			 session.close();
+		 }	
 		
 	}
 
-	@Override
-	public Readers Buscar(Long id) {
 	
-		return null;
-	}
-
-	@Override
+    public Readers findById(int id){
+		
+    	Readers reader=null;
+    	
+    	try{
+			 session=PersistenceListener.createEntityManager();
+			 Query q = session.createNamedQuery("Readers.findById");
+			 q.setParameter("id", id);
+			 res = q.getResultList();
+			 /* aca pude utilizar getSingleResult pero no siempre retorna correctamente */
+			if (!res.isEmpty()){
+				reader = res.get(0);
+			}
+		}catch(Exception e){
+			 
+			e.printStackTrace();;
+		 }finally{
+			 session.close();
+		 }	
+    	return reader;
+    }
 	public void Eliminar(Readers t) {
-		
+		try{
+			 session=PersistenceListener.createEntityManager();
+			 session.getTransaction().begin();
+			 session.remove(session.contains(t) ? t : session.merge(t));
+			 session.getTransaction().commit();
+		}catch(Exception e){
+			session.getTransaction().rollback();
+			e.printStackTrace();;
+		 }finally{
+			 session.close();
+		 }	
 		
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<Readers> findAll() {
-		
-		return null;
+		try{
+			 session=PersistenceListener.createEntityManager();
+			 Query q = session.createNamedQuery("Readers.findAll");
+			 res = q.getResultList();
+			 System.out.println("res "+res.size());
+		}catch(Exception e){
+			 
+			e.printStackTrace();;
+		 }finally{
+			 session.close();
+		 }	 
+		return res;
 	}
-
-	@Override
-	public ReadersDaoRemote create() throws RemoteException, CreateException {
-		return null;
-	}
-
-	
-
-/*	@Override
-	public ReadersDaoImp create() throws RemoteException {
-		
-		return null;
-	}*/
-
 	
 
 }

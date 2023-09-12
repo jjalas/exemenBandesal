@@ -10,4 +10,5 @@ public interface IReadersSvr {
 	   void guardar(Readers ob);
 	   void actualizar(Readers ob);
 	   void eliminar(Readers ob);
+	   Readers findById(int id);
 }

@@ -17,9 +17,11 @@ public class UsuariosDaoImp extends DaoGenericoImp<Usuarios, Long> implements Us
 	@Override
 	public Usuarios getUsuarioByUser(String user) {
 		Usuarios us = null;
+		String sql ="from Usuarios u where u.login=:user";
+		
 		try{
 			 session=PersistenceListener.createEntityManager();
-			Query q = session.createQuery("from Usuarios u where u.usuario=:user");
+			Query q = session.createQuery(sql);
 			q.setParameter("user",user);
 			userl = q.getResultList();
 			if (!userl.isEmpty()){
@@ -29,7 +31,9 @@ public class UsuariosDaoImp extends DaoGenericoImp<Usuarios, Long> implements Us
 			 
 			e.printStackTrace();;
 		 }finally{
+		  if(session.isOpen()){	
 			 session.close();
+		  }
 		 }		
 		return us;
 	}

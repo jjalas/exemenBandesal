@@ -1,0 +1,5 @@
+el usuario de aplicacion es admin y la clave ataraxia2020
+solo es de importar el archivo sql que subo
+la version de mysql es la 8
+
+me hizo falta el cliente de ws. por problemas que tuve que atender.

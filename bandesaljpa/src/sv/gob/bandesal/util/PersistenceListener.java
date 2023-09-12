@@ -43,11 +43,11 @@ public class PersistenceListener implements ServletContextListener {
 		Map pro = new HashMap();
 	      // leerConf();
 	 
-	       pro.put("javax.persistence.jdbc.user", "snackbar");
-	       pro.put("javax.persistence.jdbc.password", "snackbar2021");
+	       pro.put("javax.persistence.jdbc.user", "root");
+	       pro.put("javax.persistence.jdbc.password", "Miserver2023$");
 		  
 		    try {
-		      	emf = Persistence.createEntityManagerFactory("snackbarPU",pro);
+		      	emf = Persistence.createEntityManagerFactory("bandesaljpa",pro);
 		    
 	        
 	        } catch (Exception e) {
@@ -59,7 +59,7 @@ public class PersistenceListener implements ServletContextListener {
 
 	 public static EntityManager createEntityManager() {
 	        if (emf == null) {
-	            throw new IllegalStateException("Context is not initialized yet.");
+	            throw new IllegalStateException("Entity manager es nulo.");
 	        }
            
 	        return emf.createEntityManager();

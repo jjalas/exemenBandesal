@@ -61,7 +61,7 @@ public class MenuDaoImp extends DaoGenericoImp<Menu, Long> implements MenuDao {
 	public List<Menu> listarMenu() {
 		try{
 			 session=PersistenceListener.createEntityManager();
-			Query q = session.createQuery("from Menu  menu where  menu.menuSup=0 order by menu.idmenu");
+			Query q = session.createQuery("from Menu  menu  order by menu.idmenu");
 			menul = q.getResultList();
 			
 		}catch(Exception e){
